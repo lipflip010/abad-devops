@@ -1,0 +1,2 @@
+#!/bin/sh
+ansible-playbook ansible/publish_updates.yml -e "server=development"
