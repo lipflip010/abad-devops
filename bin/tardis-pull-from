@@ -1,2 +1,10 @@
 #!/bin/sh
-ansible-playbook ansible/publish_updates.yml -e "server=development"
+cd /home/philipp/cs/abad-devops/ || exit
+
+if [ "$1" ]; then
+  repo=$1
+
+else
+  repo="develop"
+fi
+ansible-playbook ansible/publish_updates.yml -e "server=development repo=$repo"

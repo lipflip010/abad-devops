@@ -5,13 +5,15 @@
   tasks:
     - name: Testing variables
       debug:
-        msg: "server_port: {{ server_port }}"
+        msg:
+          - "server port: {{ server_port }}"
+          - "repository: {{ repo }}"
     - name: Updating Repository
       git:
         repo: https://github.com/lipflip010/abad.git
         dest: /var/www/abad
         force: yes
-        version: develop
+        version:  "{{ repo }}"
         accept_hostkey: yes
 #    - name: Updating python dependencies
 #      pip:
