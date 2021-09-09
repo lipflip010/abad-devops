@@ -1,0 +1,22 @@
+- name: "Setting up reverse proxy for abad on {{ server }}-server"
+  hosts: "{{ server }}-server"
+  become: yes
+
+  tasks:
+    - name: Enable the Apache2 modules proxy proxy_http
+      shell: /usr/sbin/a2enmod proxy proxy_http
+
+    - name: Copying Systemd Service File to Server
+      template:
+        src: templates/abad.conf
+        dest: /etc/apache2/sites-available/
+
+    - name: Enable site abad.conf
+      shell: /usr/sbin/a2ensite abad
+
+    - name: Restart apache
+      service:
+        name: apache2
+        state: restarted
+
+
