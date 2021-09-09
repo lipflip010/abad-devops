@@ -1,8 +1,6 @@
 ---
-- name: Setting up Host
-  hosts: develop-server
-  vars:
-    server_port: 80
+- name: "Initial deployment to {{ server }}-server"
+  hosts: "{{ server }}-server"
   become: yes
 
   tasks:
